@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Trabalho 2 - Praticando DOM </title>
+
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1> Velocidade da via </h1>
+    <input type="text" id="input1">
+
+    <h1> Velocidade do veículo </h1>
+    <input type="text" id="input2">
+
+    <div id="mostrar"></div>
+
+    <button id="sub"> Calcular </button>
+
+    <script>
+
+        
+
+        let btn = document.querySelector('#sub');
+        btn.addEventListener('click', calcular);
+
+
+        function calcular(){
+            let via = Number(input1.value)
+            let carro = Number(input2.value)
+
+            if(carro < via){
+                mostrar.innerHTML = 'Dentro do limite'
+            }
+
+            if((carro > via) && (carro <= via + 7)){
+                mostrar.innerHTML = 'Advertência'
+            }
+
+            if((carro > via + 7) && (carro <= via + via * 0.20)){
+                mostrar.innerHTML = 'Autuado: Infração Grave'
+            }
+
+            if((carro > via + via * 0.20) && (carro <= via + via * 0.50)){
+                mostrar.innerHTML = 'Autuado: Infração Gravíssima'
+            }
+ 
+            if(carro > via + via * 0.50){
+                mostrar.innerHTML = 'Autuado: Infração Gravíssima. Penalidade de suspensão do direito de dirigir'
+            }
+            
+        }
+    </script>
+
+</body>
+</html>
