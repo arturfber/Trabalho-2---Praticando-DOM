@@ -6,29 +6,94 @@
     <title> Trabalho 2 - Praticando DOM </title>
 
     <style>
-        
+
+        *{
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background-color: rgba(228, 224, 26, 0.555);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1{
+            font-size: 25px;
+        }
+        input{
+            width: 30%;
+            font-size: 20px;
+            outline: none;
+            padding: 0.5%;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid black;
+            font-weight: 550;
+        }
+
+        button{
+            margin: 2%;
+            font-size: 20px;
+            padding: 0 1%;
+            background-color: transparent;
+            border: none;
+            font-weight: 600;
+            border: 1px solid black;
+            box-shadow: 3px 3px 3px black;
+            transition: box-shadow 0.1s;
+            transition: border-width 0.1s;
+            outline: none;
+        }
+
+        button:hover{
+            border: 2px solid black;
+            box-shadow: 3px 3px 3px black;
+        }
+
+        #mostrar{
+            font-weight: 700;
+            padding: 1%;
+            text-align: justify;
+            line-height: 30px;
+        }
+
     </style>
 </head>
 <body>
-    <h1> Velocidade da via </h1>
-    <input type="text" id="input1">
 
     <h1> Velocidade do veículo </h1>
     <input type="text" id="input2">
 
-    <div id="mostrar"></div>
+    <h1> Velocidade da via </h1>
+    <input type="text" id="input1">
 
     <button id="sub"> Calcular </button>
 
+    <button id="print"> Imprimir </button>
+
+
+    <div id="mostrar"></div>
+    
     <script>
+    
+        document.querySelector('#sub').addEventListener('click', calcular);
+        document.querySelector('#print').addEventListener('click', imprimir)
 
-        
-
-        let btn = document.querySelector('#sub');
-        btn.addEventListener('click', calcular);
-
+        function imprimir(){
+            window.print()
+        }
 
         function calcular(){
+
+            let condutor = prompt("Nome do condutor:", "José da Silva")
+            let numHabilita = prompt("Número da habilitação:", "00123456789")
+
+            if(numHabilita.length > 11)
+
+            document.getElementById('mostrar').style.border = '2px solid black'
+
             let via = Number(input1.value)
             let carro = Number(input2.value)
 
@@ -37,19 +102,35 @@
             }
 
             if((carro > via) && (carro <= via + 7)){
-                mostrar.innerHTML = 'Advertência'
+                mostrar.innerHTML = `${condutor.toUpperCase()} - ${numHabilita} <br>
+                                     Advertência <br> 
+                                     Sem penalidade ao direito de dirigir <br> 
+                                     Sem multa <br>
+                                     0 pontos`                      
             }
 
             if((carro > via + 7) && (carro <= via + via * 0.20)){
-                mostrar.innerHTML = 'Autuado: Infração Grave'
+                mostrar.innerHTML = `${condutor.toUpperCase()} - ${numHabilita} <br>
+                                     Autuado: Infração Grave <br> 
+                                     Sem penalidade ao direito de dirigir <br> 
+                                     Multa de R$ 195,23 <br>
+                                     5 pontos`
             }
 
             if((carro > via + via * 0.20) && (carro <= via + via * 0.50)){
-                mostrar.innerHTML = 'Autuado: Infração Gravíssima'
+                mostrar.innerHTML = `${condutor.toUpperCase()} - ${numHabilita} <br>
+                                     Autuado: Infração Gravíssima <br> 
+                                     Sem penalidade ao direito de dirigir <br> 
+                                     Multa de R$ 880,41 <br>
+                                     7 pontos`
             }
  
             if(carro > via + via * 0.50){
-                mostrar.innerHTML = 'Autuado: Infração Gravíssima. Penalidade de suspensão do direito de dirigir'
+                mostrar.innerHTML = `${condutor.toUpperCase()} - ${numHabilita} <br>
+                                     Autuado: Infração Gravíssima. <br> 
+                                     Penalidade de suspensão do direito de dirigir <br> 
+                                     Multa de R$ 880,42 + 3x 293,47 <br>
+                                     7 pontos`
             }
             
         }
